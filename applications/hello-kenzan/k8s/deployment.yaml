@@ -22,6 +22,7 @@ metadata:
     app: hello-kenzan
 spec:
   strategy:
+    replicas: 3
     type: Recreate
   template:
     metadata:
