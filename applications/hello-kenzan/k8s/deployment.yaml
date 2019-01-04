@@ -14,14 +14,14 @@ spec:
   type: NodePort
 
 ---
-apiVersion: extensions/v1beta1
+apiVersion: extensions/v1beta2
 kind: Deployment
 metadata:
   name: hello-kenzan
   labels:
     app: hello-kenzan
 spec:
-    replicas: 3
+  replicas: 3
   strategy:
     type: Recreate
   template:
