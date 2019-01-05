@@ -21,9 +21,8 @@ metadata:
   labels:
     app: hello-kenzan
 spec:
-  replicas: 3
   strategy:
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       labels:
@@ -31,7 +30,7 @@ spec:
         tier: hello-kenzan
     spec:
       containers:
-      - image: 127.0.0.1:30400/hello-kenzan:latest
+      - image: 127.0.0.1:30400/hello-kenzan:$BUILD_TAG
         name: hello-kenzan
         ports:
         - containerPort: 80
