@@ -18,6 +18,6 @@ echo "deb http://mirrors.ustc.edu.cn/kubernetes/apt kubernetes-xenial main" | te
 apt-get update && apt-get install -y kubectl --allow-unauthenticated
 
 # Grant jenkins user group access to /var/run/docker.sock
-RUN addgroup --gid 1001 dsock
-RUN gpasswd -a jenkins dsock 
+#RUN addgroup --gid 1001 dsock
+RUN gpasswd -a jenkins docker 
 USER jenkins

@@ -60,7 +60,7 @@ data:
     #!/bin/bash -v
 
     kubectl config set-credentials jenkins --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-    kubectl config set-cluster minikube --server="https://192.168.99.100:8443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    kubectl config set-cluster minikube --server="https://172.17.8.101:6443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     kubectl config set-context jenkins-minikube --cluster=minikube --user=jenkins --namespace=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
     kubectl config use-context jenkins-minikube
     chmod 755 ~/.kube/config
@@ -122,7 +122,7 @@ spec:
           mountPath: /var/jenkins_home/.kube
         - name: docker
           mountPath: /var/run/docker.sock
-        - name: jenkins-persistent-storage
+        - name: jenkins-storage
           mountPath: /var/jenkins_home
         ports:
         - containerPort: 8080
@@ -139,6 +139,7 @@ spec:
       - name: docker
         hostPath:
           path: /var/run/docker.sock
-      - name: jenkins-persistent-storage
-        persistentVolumeClaim:
-          claimName: jenkins-claim
+      - name: jenkins-storage
+        emptyDir: {}
+          #persistentVolumeClaim:
+          #claimName: jenkins-claim
