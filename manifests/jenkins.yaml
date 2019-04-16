@@ -113,7 +113,7 @@ spec:
         - name: kubectl-jenkins-context
           mountPath: "/simon"
       containers:
-      - image: localhost:30400/jenkins:latest
+      - image: localhost:30400/jenkins:simon
         name: jenkins
         securityContext:
           privileged: true
@@ -141,5 +141,5 @@ spec:
           path: /var/run/docker.sock
       - name: jenkins-storage
         emptyDir: {}
-          #persistentVolumeClaim:
-          #claimName: jenkins-claim
+        #persistentVolumeClaim:
+        #  claimName: jenkins-claim
