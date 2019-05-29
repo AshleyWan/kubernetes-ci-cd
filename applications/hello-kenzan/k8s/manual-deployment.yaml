@@ -31,6 +31,7 @@ spec:
     spec:
       containers:
       - image: localhost:30400/hello-kenzan:latest
+        imagePullPolicy: IfNotPresent
         name: hello-kenzan
         ports:
         - containerPort: 80

@@ -60,7 +60,7 @@ data:
     #!/bin/bash -v
 
     kubectl config set-credentials jenkins --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-    kubectl config set-cluster minikube --server="https://172.17.8.20:6443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    kubectl config set-cluster kubeadm --server="https://172.17.8.11:6443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     kubectl config set-context jenkins-minikube --cluster=minikube --user=jenkins --namespace=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
     kubectl config use-context jenkins-minikube
     chmod 755 ~/.kube/config
@@ -113,7 +113,7 @@ spec:
         - name: kubectl-jenkins-context
           mountPath: "/simon"
       containers:
-      - image: localhost:30400/jenkins:simon
+      - image: localhost:30400/jenkins:2.138.4
         name: jenkins
         securityContext:
           privileged: true
